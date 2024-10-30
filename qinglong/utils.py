@@ -1,6 +1,34 @@
 import time
 import functools
-from logger import QlLogger
+import logging
+from notify import send
+
+class QlLogger:
+    def __init__(self, name):
+        self.logger = logging.getLogger(name)
+        self.logger.setLevel(logging.INFO)
+        
+        # 控制台处理器
+        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", 
+                                    "%Y-%m-%d %H:%M:%S")
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+        self.logger.addHandler(console_handler)
+        self.name = name
+
+    def info(self, message):
+        self.logger.info(message)
+
+    def error(self, message, notify=True):
+        self.logger.error(message)
+        if notify:
+            send(self.name, message)
+
+    def warning(self, message):
+        self.logger.warning(message)
+
+    def debug(self, message):
+        self.logger.debug(message)
 
 def retry_on_error(max_retries=3, retry_delay=120, error_types=(Exception,), error_message="操作失败"):
     def decorator(func):

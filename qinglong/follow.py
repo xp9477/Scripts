@@ -6,9 +6,7 @@
 import os
 import requests
 import json
-from notify import send
-from utils import retry_on_error
-from logger import QlLogger
+from utils import retry_on_error, QlLogger
 
 
 cookie = os.environ.get('follow_cookie', '')
