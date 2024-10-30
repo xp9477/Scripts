@@ -1,6 +1,7 @@
-# follow RSS阅读器 签到
-# 需要配置环境变量 follow_cookie, follow_csrfToken
 # cron: 0 1 * * *
+# const $ = new Env("follow RSS阅读器");
+# 需要配置环境变量 follow_cookie, follow_csrfToken
+
 
 import os
 import requests

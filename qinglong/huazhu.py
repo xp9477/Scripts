@@ -1,7 +1,6 @@
-# 华住会签到
-# 需要配置环境变量 huazhu_usertoken, 抓包 cookie 中的 userToken
 # cron: 0 1 * * *
-
+# const $ = new Env("华住会");
+# 需要配置环境变量 huazhu_usertoken, 抓包 cookie 中的 userToken
 # todo: 活跃值检测， 超过50抽奖
 # todo: 年度签到检测， 领取盲盒
 
