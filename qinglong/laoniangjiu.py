@@ -10,7 +10,9 @@ import requests
 import os
 from notify import send
 from utils import retry_on_error
+from logger import QlLogger
 
+logger = QlLogger("老娘舅")
 
 @retry_on_error()
 def login(session, login_url, credentials=None):
@@ -22,7 +24,7 @@ def sign_in(session, sign_in_url):
     json_data = {'activityId': '886927829877411841', 'appid': 'wx6970ed1a10abf76e'}
     response = session.post(sign_in_url, json=json_data)
     sign_in_result = response.json().get('data', {}).get('rewardDetailList', None)
-    print(f"签到结果: {sign_in_result}")
+    logger.info(f"签到结果: {sign_in_result}")
 
 
 @retry_on_error()
@@ -30,7 +32,7 @@ def fetch_user_info(session, user_info_url):
     json_data = {'appid': 'wx6970ed1a10abf76e'}
     response = session.post(user_info_url, json=json_data)
     user_info = response.json().get('data', {}).get('totalPoints', None)
-    print(f"用户信息：{user_info}")
+    logger.info(f"用户信息：{user_info}")
 
 
 def main():
@@ -58,11 +60,11 @@ def main():
                 })
 
     if not accounts:
-        print("未配置账号信息，请设置环境变量 laoniangjiu_accounts")
+        logger.info("未配置账号信息，请设置环境变量 laoniangjiu_accounts")
         return
 
     for account in accounts:
-        print(f"\n账户 【{account.get('username', 'Unknown')}】")
+        logger.info(f"\n账户 【{account.get('username', 'Unknown')}】")
         with requests.Session() as session:
             try:
                 if account['headers']:
@@ -75,7 +77,7 @@ def main():
                 fetch_user_info(session, user_info_url)
 
             except Exception as e:
-                print(f"处理账户 {account.get('username', 'Unknown')} 时出错: {e}")
+                logger.error(f"处理账户 {account.get('username', 'Unknown')} 时出错: {e}")
 
 if __name__ == '__main__':
     main()

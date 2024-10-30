@@ -10,7 +10,9 @@ import requests
 import time
 from notify import send
 from utils import retry_on_error
+from logger import QlLogger
 
+logger = QlLogger("华住会")
 
 cookies = {
     'userToken': os.environ.get('huazhu_usertoken', ''),
@@ -45,11 +47,10 @@ def sign():
     sign_result = response_json.get('content', {}).get('SignResult', '')
     
     if not sign_result:
-        print(f"签到失败: {response_json}")
-        send(f"华住会签到失败: {response_json}")
+        logger.error(f"签到失败: {response_json}")
     else:
         point = response_json.get('content', {}).get('point', '')
-        print(f"签到成功, 获得积分: {point}")
+        logger.info(f"签到成功, 获得积分: {point}")
 
 if __name__ == "__main__":
     sign()

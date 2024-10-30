@@ -8,10 +8,13 @@ import requests
 import json
 from notify import send
 from utils import retry_on_error
+from logger import QlLogger
 
 
 cookie = os.environ.get('follow_cookie', '')
 csrfToken = os.environ.get('follow_csrfToken', '')
+
+logger = QlLogger("follow RSS阅读器")
 
 @retry_on_error()
 def sign():
@@ -33,10 +36,9 @@ def sign():
     message = response_json.get('message', '')
     
     if code != 0:
-        print(f"签到失败: {message}")
-        send(f"follow RSS阅读器签到失败: {message}")
+        logger.error(f"签到失败: {message}")
     else:
-        print("签到成功")
+        logger.info("签到成功")
 
 
 if __name__ == "__main__":
