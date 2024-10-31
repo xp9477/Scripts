@@ -1,16 +1,14 @@
 # cron: 0 1 * * *
 # const $ = new Env("老娘舅");
 # 需要配置环境变量 laoniangjiu_accounts, 格式: "phone1,token1;phone2,token2"
-
-
 import requests
 import os
-from utils import retry_on_error, QlLogger
+from utils import QlLogger
 import time
+
 
 logger = QlLogger("老娘舅")
 
-@retry_on_error()
 def sign_in(headers, sign_in_url):
     headers.update({
         'Host': 'webapi.qmai.cn',
@@ -37,7 +35,6 @@ def sign_in(headers, sign_in_url):
         logger.info("签到成功")
     return response_json
 
-@retry_on_error()
 def fetch_user_info(headers, user_info_url):
     headers.update({
         'Host': 'webapi.qmai.cn',
@@ -91,7 +88,7 @@ def main():
         return
 
     for account in accounts:
-        logger.info(f"\n账户 【{account.get('username', 'Unknown')}】")
+        logger.info(f"账户 【{account.get('username', 'Unknown')}】")
         try:
             sign_in(account['headers'], sign_in_url)
             fetch_user_info(account['headers'], user_info_url)

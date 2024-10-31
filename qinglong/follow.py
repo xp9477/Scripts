@@ -1,12 +1,10 @@
 # cron: 0 1 * * *
 # const $ = new Env("follow RSS阅读器");
 # 需要配置环境变量 follow_cookie, follow_csrfToken
-
-
 import os
 import requests
 import json
-from utils import retry_on_error, QlLogger
+from utils import QlLogger
 
 
 cookie = os.environ.get('follow_cookie', '')
@@ -14,7 +12,6 @@ csrfToken = os.environ.get('follow_csrfToken', '')
 
 logger = QlLogger("follow RSS阅读器")
 
-@retry_on_error()
 def sign():
     url = 'https://api.follow.is/wallets/transactions/claim_daily'
     headers = {

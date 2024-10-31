@@ -3,12 +3,11 @@
 # 需要配置环境变量 huazhu_usertoken, 抓包 cookie 中的 userToken
 # todo: 活跃值检测， 超过50抽奖
 # todo: 年度签到检测， 领取盲盒
-
-
 import os
 import requests
 import time
-from utils import retry_on_error, QlLogger
+from utils import QlLogger
+
 
 logger = QlLogger("华住会")
 
@@ -16,7 +15,6 @@ cookies = {
     'userToken': os.environ.get('huazhu_usertoken', ''),
 }
 
-@retry_on_error()
 def sign():
     url = f'https://appgw.huazhu.com/game/sign_in'
 
