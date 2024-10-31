@@ -13,7 +13,7 @@ def sign_in(headers, sign_in_url):
     response = requests.post(sign_in_url, headers=headers, json=json_data)
     response_json = response.json()
     
-    if response_json.get('success') != True:
+    if response_json.get('code') != 0:
         logger.error(f"签到失败: {response_json}")
     else:
         logger.info(f"签到成功, {response_json.get('data', {}).get('rewardDetailList', None)}")
@@ -49,8 +49,8 @@ def parse_accounts(env_accounts):
     return accounts
 
 def main():
-    sign_in_url = 'https://api.ztomember.com/api/member/sign/v2/userSignIn'
-    user_info_url = 'https://api.ztomember.com/api/user/point/get'
+    sign_in_url = 'https://webapi.qmai.cn/web/cmk-center/sign/takePartInSign'
+    user_info_url = 'https://qmwebapi.qmai.cn/web/catering2-apiserver/crm/points-info'
     
     accounts = parse_accounts(os.getenv('bawangchaji_accounts', ''))
     if not accounts:
