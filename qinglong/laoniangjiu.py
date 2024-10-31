@@ -3,9 +3,6 @@
 # 需要配置环境变量 laoniangjiu_accounts, 格式: "phone1,token1;phone2,token2"
 
 
-# todo: 签到失败通知
-
-
 import requests
 import os
 from utils import retry_on_error, QlLogger
