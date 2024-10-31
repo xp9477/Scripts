@@ -49,7 +49,7 @@ def main():
     sign_in_url = 'https://api.ztomember.com/api/member/sign/v2/userSignIn'
     user_info_url = 'https://api.ztomember.com/api/user/point/get'
     
-    accounts = parse_accounts(os.getenv('zhongtong_accounts', '17770808819,eyJhbGciOiJIUzUxMiJ9.eyJnZW5lcmF0ZVRpbWUiOjE3MDY3MjMxNTkxNzEsInVzZXJJZCI6IjgyODkyMTgyNjk5NjQyODgifQ.B42A41iiZLbZCESvC2ibPGyDaezxkhBwPcKKfhxi4pP1RxZzN9TAwlmAzmTp79vRYzEyQoL9O4pRU8ZBzOuXeA;18916173004,eyJhbGciOiJIUzUxMiJ9.eyJnZW5lcmF0ZVRpbWUiOjE3MDY3MjM5MzMxMTUsInVzZXJJZCI6IjIwNzAzMjc2MDc1NzQ2MzA0In0.l1iDfVDKODs4c4HqsT56cDLQsyY404o6i9yY3WQVc81b-Zk8n17lKI2dXZyuOzPywXmSNx5f5ecTc3Vy-xvl5Q;15618626263,eyJhbGciOiJIUzUxMiJ9.eyJnZW5lcmF0ZVRpbWUiOjE3MDY3MjQxMzk5NTIsInVzZXJJZCI6IjIwNzAzMzI2Mjc2MzIyMzA0In0.3AcfD_tQr1C9OxH7RM5k28TCSz15CODPv55TLiOYJUAZfLXRc7XOlhXTPKt6LZ7WUc74E2zUqu2afkIWRrHRZA;'))
+    accounts = parse_accounts(os.getenv('zhongtong_accounts', ''))
     if not accounts:
         logger.info("未配置账号信息，请设置环境变量 zhongtong_accounts")
         return
