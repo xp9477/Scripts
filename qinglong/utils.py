@@ -1,5 +1,5 @@
 import logging
-from qinglong.notify import send
+from notify import send
 
 class QlLogger:
     def __init__(self, name):
