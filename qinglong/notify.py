@@ -34,8 +34,6 @@ def print(text, *args, **kw):
 # 通知服务
 # fmt: off
 push_config = {
-    'HITOKOTO': False,                  # 启用一言（随机句子）
-
     'BARK_PUSH': '',                    # bark IP 或设备码，例：https://api.day.app/DxHcxxxxxRxxxxxxcm/
     'BARK_ARCHIVE': '',                 # bark 推送是否存档
     'BARK_GROUP': '',                   # bark 推送分组
@@ -832,16 +830,6 @@ def custom_notify(title: str, content: str) -> None:
         print(f"自定义通知推送失败！{response.status_code} {response.text}")
 
 
-def one() -> str:
-    """
-    获取一条一言。
-    :return:
-    """
-    url = "https://v1.hitokoto.cn/"
-    res = requests.get(url).json()
-    return res["hitokoto"] + "    ----" + res["from"]
-
-
 def add_notify_function():
     if push_config.get("BARK_PUSH"):
         notify_function.append(bark)
@@ -910,9 +898,6 @@ def send(title: str, content: str) -> None:
         if title in re.split("\n", skipTitle):
             print(f"{title} 在SKIP_PUSH_TITLE环境变量内，跳过推送！")
             return
-
-    hitokoto = push_config.get("HITOKOTO")
-    content += "\n\n" + one() if hitokoto else ""
 
     add_notify_function()
     ts = [
