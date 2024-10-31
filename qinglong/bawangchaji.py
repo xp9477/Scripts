@@ -13,20 +13,11 @@ def sign_in(headers, sign_in_url):
     response = requests.post(sign_in_url, headers=headers, json=json_data)
     response_json = response.json()
     
-    if response_json.get('code') != 0:
+    if response_json.get('code') != '0':
         logger.error(f"签到失败: {response_json}")
     else:
-        logger.info(f"签到成功, {response_json.get('data', {}).get('rewardDetailList', None)}")
+        logger.info(f"签到成功, {response_json.get('data', {})}")
 
-def fetch_user_info(headers, user_info_url):
-    json_data = {'appid': 'wxafec6f8422cb357b'}
-    response = requests.post(user_info_url, headers=headers, json=json_data)
-    response_json = response.json()
-    
-    if response_json.get('code') != 0:
-        logger.error(f"获取用户信息失败: {response_json}")
-    else:
-        logger.info(f"当前积分: {response_json.get('data', {}).get('totalPoints', 0)}")
 
 def parse_accounts(env_accounts):
     accounts = []
@@ -49,7 +40,7 @@ def parse_accounts(env_accounts):
     return accounts
 
 def main():
-    sign_in_url = 'https://webapi2.qmai.cn/web/cmk-center/sign/takePartInSign'
+    sign_in_url = 'https://webapi2.qmai.cn/web/catering2-apiserver/crm/points-info'
     user_info_url = 'https://webapi2.qmai.cn/web/catering2-apiserver/crm/points-info'
     
     accounts = parse_accounts(os.getenv('bawangchaji_accounts', ''))
@@ -61,7 +52,6 @@ def main():
         logger.info(f"账户 【{account.get('username', 'Unknown')}】")
         try:
             sign_in(account['headers'], sign_in_url)
-            fetch_user_info(account['headers'], user_info_url)
         except Exception as e:
             logger.error(f"处理账户 {account.get('username', 'Unknown')} 时出错: {e}")
 
