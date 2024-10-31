@@ -42,7 +42,7 @@ def sign():
     
     sign_result = response_json.get('content', {}).get('SignResult', '')
     
-    if not sign_result:
+    if not sign_result and response_json.get('message') != '今日已签到':
         logger.error(f"签到失败: {response_json}")
     else:
         point = response_json.get('content', {}).get('point', '')

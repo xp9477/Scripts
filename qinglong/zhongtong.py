@@ -11,13 +11,13 @@ def sign_in(headers, sign_in_url):
     response = requests.post(sign_in_url, headers=headers, json={})
     response_json = response.json()
     
-    if response_json.get('code') != 0:
+    if response_json.get('code') != 0 and response_json.get('msg') != '今日已签到':
         logger.error(f"签到失败: {response_json}")
     else:
         logger.info(f"签到成功, {response_json}")
 
 def fetch_user_info(headers, user_info_url):
-    response = requests.get(user_info_url, headers=headers, json={})
+    response = requests.post(user_info_url, headers=headers, json={})
     response_json = response.json()
     
     if response_json.get('code') != 0:

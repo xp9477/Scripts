@@ -1,6 +1,7 @@
 # cron: 0 1 * * *
 # const $ = new Env("follow RSS阅读器");
 # 需要配置环境变量 follow_cookie, follow_csrfToken
+# todo: 签到成功后，获取积分
 import os
 import requests
 import json
@@ -30,7 +31,7 @@ def sign():
     code = response_json.get('code', '')
     message = response_json.get('message', '')
     
-    if code != 0:
+    if code != 0 and message != 'Already claimed':
         logger.error(f"签到失败: {message}")
     else:
         logger.info("签到成功")
