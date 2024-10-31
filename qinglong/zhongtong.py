@@ -31,7 +31,7 @@ def parse_accounts(env_accounts):
     if not env_accounts:
         return accounts
         
-    for account_str in env_accounts.split(';'):
+    for account_str in env_accounts.split('\n\n'):
         if ',' not in account_str:
             continue
             
