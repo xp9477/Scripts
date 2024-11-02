@@ -39,10 +39,8 @@ def sign():
 
     response = requests.get(url, params=params, headers=headers, cookies=cookies)
     response_json = response.json()
-    
-    sign_result = response_json.get('content', {}).get('SignResult', '')
-    
-    if not sign_result and response_json.get('message') != '今日已签到':
+        
+    if response_json.get('code') != 200 and response_json.get('message') != '今日已签到':
         logger.error(f"签到失败: {response_json}")
     else:
         point = response_json.get('content', {}).get('point', '')
