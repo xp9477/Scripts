@@ -1,0 +1,12 @@
+payload:
+# > PT Site
+  - DOMAIN-SUFFIX,m-team.cc
+  - DOMAIN-SUFFIX,torrentleech.org
+  - DOMAIN-SUFFIX,piggo.me
+  - DOMAIN-SUFFIX,dmhy.org
+  - DOMAIN-SUFFIX,piggo.me
+  
+# > Others
+  - DOMAIN-SUFFIX,is.gd
+  - DOMAIN-SUFFIX,cloudflare.com
+  - DOMAIN-SUFFIX,follow.is
