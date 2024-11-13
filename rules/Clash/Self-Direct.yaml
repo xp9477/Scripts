@@ -1,12 +1,10 @@
 payload:
-  # > 
+# >
   - DOMAIN-SUFFIX,990226.xyz
-  
-  # > PT site
+# > PT site
   - DOMAIN-SUFFIX,hdhome.org
   - DOMAIN-SUFFIX,hhanclub.top
   - DOMAIN-SUFFIX,hares.top
   - DOMAIN-SUFFIX,1ptba.com
-
-  # > Others
+# > Others
   - DOMAIN-SUFFIX,x6d.com
