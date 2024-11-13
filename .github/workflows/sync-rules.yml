@@ -1,0 +1,38 @@
+name: Sync Rules
+
+on:
+  push:
+    paths:
+      - 'rules/Loon/Self-Direct.list'
+      - 'rules/Loon/Self-Proxy.list'
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          
+      - name: Sync rules
+        run: |
+          python .github/scripts/sync_rules.py
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add rules/Clash/Self-Direct.yaml rules/Clash/Self-Proxy.yaml
+          git add rules/QuanX/Self-Direct.list rules/QuanX/Self-Proxy.list
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: sync rules from Loon to Clash and QuanX"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
