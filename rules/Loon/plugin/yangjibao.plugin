@@ -1,11 +1,11 @@
-#!name=yangjibao
-#!desc=养基宝vip
+#!name=养基宝
+#!desc=养基宝解锁vip
 #!icon=
 #!homepage=
 #!author=xp9477
 
 [Script]
-http-response ^https?:\/\/.*yangjibao\.com\/((?:wxapi\/)?account|vip_info) script-path=https://github.com/xp9477/Scripts/raw/main/rules/Loon/script/yangjibao.js, requires-body=true, timeout=60
+http-response ^https?:\/\/.*yangjibao\.com\/(?:wxapi\/)?account|vip_info script-path=https://github.com/xp9477/Scripts/raw/main/rules/Loon/script/yangjibao.js, requires-body=true, timeout=60
 
 [MITM]
 hostname = *.yangjibao.com
