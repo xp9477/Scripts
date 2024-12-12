@@ -5,7 +5,8 @@
 #!author=xp9477
 
 [Script]
-http-response ^https?:\/\/.*yangjibao\.com\/(wxapi\/)?account script-path=https://github.com/xp9477/Scripts/raw/main/rules/Loon/script/yangjibao.js, requires-body=true, timeout=60, tag=YangJiBaoVip
+http-response ^https?:\/\/.*yangjibao\.com\/(wxapi\/)?account script-path=https://github.com/xp9477/Scripts/raw/main/rules/Loon/script/yangjibao.js, requires-body=true, timeout=60
+http-response ^https?:\/\/.*yangjibao\.com\/account script-path=https://github.com/xp9477/Scripts/raw/main/rules/Loon/script/yangjibao.js, requires-body=true, timeout=60
 
 [MITM]
 hostname = *.yangjibao.com
