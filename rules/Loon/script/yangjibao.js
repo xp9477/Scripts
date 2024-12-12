@@ -10,7 +10,7 @@
 
 ^https?:\/\/.*yangjibao\.com\/(wxapi\/)?account url script-response-body https://github.com/xp9477/Scripts/raw/main/rules/Loon/script/yangjibao.js
 ^https?:\/\/.*yangjibao\.com\/account url script-response-body https://github.com/xp9477/Scripts/raw/main/rules/Loon/script/yangjibao.js
-
+^https?:\/\/.*yangjibao\.com\/vip_info url script-response-body https://github.com/xp9477/Scripts/raw/main/rules/Loon/script/yangjibao.js
 [mitm] 
 
 hostname = *.yangjibao.com
