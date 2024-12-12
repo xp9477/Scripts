@@ -1,0 +1,11 @@
+#!name=yangjibao
+#!desc=养基宝vip
+#!icon=
+#!homepage=
+#!author=xp9477
+
+[Script]
+http-response ^https:\/\/app-api\.yangjibao\.com\/account requires-body=1,max-size=0,script-path= https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/cubox.js
+
+[MITM]
+hostname = app-api.yangjibao.com
